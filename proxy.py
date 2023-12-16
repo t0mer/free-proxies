@@ -21,11 +21,10 @@ class ProxyScrapper():
 
     def get_proxies(self):
         try:
+            content = open("proxies.json",'w')
+            content.close()
             proxy_list = requests.get(self.proxies_url).json()
-            # for ip, info in proxy_list.json()['http'].items():
-            #     anonymity = info.get('anonymity')
-            #     country = info.get('country')
-            #     self.proxies.append(Proxy(type="http",anonymity=anonymity,country=country,ip=ip))
+
             with open("proxies.json",'w') as f:
                 f.write(str(proxy_list).replace("'",'"'))
         except Exception as e:
